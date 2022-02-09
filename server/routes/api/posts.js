@@ -34,9 +34,14 @@ router.delete("/:id", async (req, res) => {
   res.status(200).send();
 });
 
+// Environment Variables for Secrets
+const username = process.env["DB_USERNAME"]
+const password = process.env["DB_PASSWORD"]
+
+// Connect to MongoDB
 async function loadPostCollection() {
   const client = await mongodb.MongoClient.connect(
-    "mongodb+srv://admin:pRjRQ4ezfqNNH@cluster0.c4wvu.mongodb.net/Cluster0?retryWrites=true&w=majority",
+    `mongodb+srv://${username}:${password}@cluster0.c4wvu.mongodb.net/Cluster0?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
     }
